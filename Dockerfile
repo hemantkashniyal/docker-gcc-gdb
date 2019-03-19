@@ -8,5 +8,5 @@ RUN git clone https://github.com/google/protobuf.git
 RUN cd protobuf && git checkout tags/v3.6.1
 
 RUN cd protobuf && git submodule update --init --recursive && ./autogen.sh
-RUN .cd protobuf && /configure --prefix=/usr && make && make check && make install && ldconfig
+RUN cd protobuf && /configure --prefix=/usr && make && make check && make install && ldconfig
 RUN rm -rf protobuf
