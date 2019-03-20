@@ -57,7 +57,7 @@ RUN apt-get install -y autoconf automake libtool curl make g++ unzip && \
 
 # install cppzmq
 ARG CPPZMQ_REPO='https://github.com/zeromq/cppzmq'
-ARG CPPZMQ_CHECKOUT='tags/v4.3.1'
+ARG CPPZMQ_CHECKOUT='tags/v4.3.0'
 ARG CPPZMQ_SETUP_PATH=${SETUP_LOCATION}'/CPPZMQ'
 RUN apt-get install -y autoconf automake libtool curl make g++ unzip && \
     git clone ${CPPZMQ_REPO} ${CPPZMQ_SETUP_PATH} && \
