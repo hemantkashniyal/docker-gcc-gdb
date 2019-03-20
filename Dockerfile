@@ -3,10 +3,11 @@ MAINTAINER Hemant Kashniyal <hemantkashniyal@gmail.com>
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
     apt-get install -y gcc gdb && \
-    apt-get install -y vim git
+    apt-get install -y vim git cmake
 
 ARG INSTALL_LOCATION='/usr/local'
 ARG SETUP_LOCATION='/tmp/setup'
+ARG CPU_CORE=4
 
 RUN mkdir -p ${INSTALL_LOCATION}
 
@@ -19,8 +20,8 @@ RUN apt-get install -y autoconf automake libtool curl make g++ unzip && \
     cd ${PROTOBUF_SETUP_PATH} && git checkout ${PROTOBUF_CHECKOUT} && git submodule update --init --recursive && \
     ./autogen.sh && \
     ./configure --prefix=${INSTALL_LOCATION} && \
-    make && \
-    make check && \
+    make -j${CPU_CORE} && \
+    make -j${CPU_CORE} check && \
     make install && \
     ldconfig && \
     rm -rf ${PROTOBUF_SETUP_PATH}
@@ -35,7 +36,7 @@ RUN apt-get install -y autoconf automake libtool curl make g++ unzip && \
     cd 3rdParty/gtest && unzip -u -o gtest-1.7.0.zip && cd ../../ && \
     mkdir -p ./cmake_build && cd ./cmake_build && \
     cmake .. -DCMAKE_BUILD_TYPE=Release -DCPACK_PACKAGING_INSTALL_PREFIX=${INSTALL_LOCATION} && \
-    make package && \
+    make -j${CPU_CORE} package && \
     make install && \
     ldconfig && \
     rm -rf ${G3LOG_SETUP_PATH}
@@ -49,7 +50,7 @@ RUN apt-get install -y autoconf automake libtool curl make g++ unzip && \
     cd ${ZMQ_SETUP_PATH} && git checkout ${ZMQ_CHECKOUT} && git submodule update --init --recursive && \
     mkdir -p ./cmake_build && cd ./cmake_build && \
     cmake .. -DCMAKE_BUILD_TYPE=Release -DCPACK_PACKAGING_INSTALL_PREFIX=${INSTALL_LOCATION} && \
-    make && \
+    make -j${CPU_CORE} && \
     make install && \
     ldconfig && \
     rm -rf ${ZMQ_SETUP_PATH}
@@ -63,7 +64,7 @@ RUN apt-get install -y autoconf automake libtool curl make g++ unzip && \
     cd ${CPPZMQ_SETUP_PATH} && git checkout ${CPPZMQ_CHECKOUT} && git submodule update --init --recursive && \
     mkdir -p ./cmake_build && cd ./cmake_build && \
     cmake .. -DCMAKE_BUILD_TYPE=Release -DCPACK_PACKAGING_INSTALL_PREFIX=${INSTALL_LOCATION} && \
-    make && \
+    make -j${CPU_CORE} && \
     make install && \
     ldconfig && \
     rm -rf ${CPPZMQ_SETUP_PATH}
@@ -77,7 +78,7 @@ RUN apt-get install -y libssl-dev && \
     cd ${POCO_SETUP_PATH} && git checkout ${POCO_CHECKOUT} && git submodule update --init --recursive && \
     mkdir -p ./cmake_build && cd ./cmake_build && \
     cmake .. -DCMAKE_INSTALL_PREFIX=${INSTALL_LOCATION} && \
-    make && \
+    make -j${CPU_CORE} && \
     make install && \
     ldconfig && \
     rm -rf ${POCO_SETUP_PATH}
@@ -91,7 +92,7 @@ RUN apt-get install -y libssl-dev && \
     cd ${OPENCV_SETUP_PATH} && git checkout ${OPENCV_CHECKOUT} && git submodule update --init --recursive && \
     mkdir -p ./cmake_build && cd ./cmake_build && \
     cmake .. -DCMAKE_INSTALL_PREFIX=${INSTALL_LOCATION} && \
-    make && \
+    make -j${CPU_CORE} && \
     make install && \
     ldconfig && \
     rm -rf ${OPENCV_SETUP_PATH}
