@@ -3,7 +3,9 @@ MAINTAINER Hemant Kashniyal <hemantkashniyal@gmail.com>
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
     apt-get install -y gcc gdb && \
-    apt-get install -y vim git cmake libjsoncpp-dev
+    apt-get install -y vim git cmake
+    
+RUN apt-get install -y libjsoncpp-dev tmux screen
 
 ARG INSTALL_LOCATION='/usr/local'
 ARG SETUP_LOCATION='/tmp/setup'
