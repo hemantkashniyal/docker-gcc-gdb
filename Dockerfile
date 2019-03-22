@@ -3,7 +3,7 @@ MAINTAINER Hemant Kashniyal <hemantkashniyal@gmail.com>
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
     apt-get install -y gcc gdb && \
-    apt-get install -y vim git cmake
+    apt-get install -y vim git cmake libjsoncpp-dev
 
 ARG INSTALL_LOCATION='/usr/local'
 ARG SETUP_LOCATION='/tmp/setup'
