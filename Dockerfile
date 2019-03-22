@@ -1,11 +1,8 @@
 FROM ubuntu:16.04
 MAINTAINER Hemant Kashniyal <hemantkashniyal@gmail.com>
-RUN apt-get update && \
-    apt-get install -y software-properties-common && \
-    apt-get install -y gcc gdb && \
-    apt-get install -y vim git cmake
-    
-RUN apt-get install -y libjsoncpp-dev tmux screen
+RUN apt-get update && apt-get install -y software-properties-common
+RUN apt-get install -y gcc gdb libc6-dbg gdb valgrind
+RUN apt-get install -y apt-get install -y vim git cmake tmux screen
 
 ARG INSTALL_LOCATION='/usr/local'
 ARG SETUP_LOCATION='/tmp/setup'
@@ -43,7 +40,7 @@ RUN apt-get install -y autoconf automake libtool curl make g++ unzip && \
 
 # install g3log
 ARG G3LOG_SETUP_PATH=${SETUP_LOCATION}'/G3LOG'
-RUN apt-get install -y autoconf automake libtool curl make g++ unzip && \
+RUN apt-get install -y libjsoncpp-dev autoconf automake libtool curl make g++ unzip && \
     git clone ${G3LOG_REPO} ${G3LOG_SETUP_PATH} && \
     cd ${G3LOG_SETUP_PATH} && git checkout ${G3LOG_CHECKOUT} && git submodule update --init --recursive && \
     cd 3rdParty/gtest && unzip -u -o gtest-1.7.0.zip && cd ../../ && \
