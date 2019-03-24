@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 MAINTAINER Hemant Kashniyal <hemantkashniyal@gmail.com>
 RUN apt-get update && apt-get install -y software-properties-common
 RUN apt-get install -y gcc gdb libc6-dbg gdb valgrind
-RUN apt-get install -y apt-get install -y vim git cmake tmux screen
+RUN apt-get install -y vim git cmake tmux screen
 
 ARG INSTALL_LOCATION='/usr/local'
 ARG SETUP_LOCATION='/tmp/setup'
