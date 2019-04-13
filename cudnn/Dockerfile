@@ -1,4 +1,4 @@
-FROM 10.1-cudnn7-devel-ubuntu16.04
+FROM nvidia/10.1-cudnn7-devel-ubuntu16.04
 MAINTAINER Hemant Kashniyal <hemantkashniyal@gmail.com>
 RUN apt-get update && apt-get install -y software-properties-common
 RUN apt-get install -y gcc gdb libc6-dbg gdb valgrind
